@@ -55,16 +55,17 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // ─── Middleware pipeline ──────────────────────────────────────────────────────
-// Always show Swagger (even in production for this demo)
+// Always show Swagger
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "WarpTalk Payment API v1");
-    options.RoutePrefix = "swagger"; // http://localhost:5001/swagger
+    // Sử dụng đường dẫn tương đối để tránh lỗi 404 trên các môi trường proxy như Render/Docker
+    options.SwaggerEndpoint("v1/swagger.json", "WarpTalk Payment API v1");
+    options.RoutePrefix = "swagger"; 
     options.DocumentTitle = "WarpTalk Payment API - VNPAY Sandbox";
 });
 
-app.UseHttpsRedirection();
+// REMOVED app.UseHttpsRedirection() as it often conflicts with Cloud Proxy (Render/Cloudflare)
 app.UseCors("ReactFrontend");
 app.UseAuthorization();
 app.MapControllers();
