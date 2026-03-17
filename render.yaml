@@ -1,0 +1,34 @@
+services:
+  # 1. Backend C# (VNPAY API)
+  - type: web
+    name: warptalk-payment-api
+    env: docker
+    rootDir: WarpTalk.PaymentApi
+    plan: free
+    region: oregon # Hoặc vùng bạn chọn
+    envVars:
+      - key: ASPNETCORE_URLS
+        value: http://0.0.0.0:10000
+      - key: Vnpay__TmnCode
+        value: 932AHOW2
+      - key: Vnpay__HashSecret
+        value: 6CAJDVG7JOR9LJNUSE6OGA5EJ2F2O8D7
+      - key: Vnpay__PaymentUrl
+        value: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+      - key: Vnpay__ReturnUrl
+        value: https://warptalk-frontend.onrender.com/payment/return # Thay bằng URL frontend của bạn sau
+
+  # 2. Frontend React (Vite)
+  - type: web
+    name: warptalk-frontend
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: warptalk-payment-api
+          type: web
+          property: host
