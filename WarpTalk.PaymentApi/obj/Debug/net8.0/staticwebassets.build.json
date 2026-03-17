@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "jXagCMjzDYX6kSbI4d15q6QvEnKPw/FtxWZdBOs9r9k=",
+  "Source": "WarpTalk.PaymentApi",
+  "BasePath": "_content/WarpTalk.PaymentApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

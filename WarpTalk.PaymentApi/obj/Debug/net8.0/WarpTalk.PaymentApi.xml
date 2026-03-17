@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WarpTalk.PaymentApi</name>
+    </assembly>
+    <members>
+        <member name="M:WarpTalk.PaymentApi.Controllers.PaymentController.CreatePaymentUrl(WarpTalk.PaymentApi.Models.PaymentRequest)">
+            <summary>
+            Tạo URL thanh toán VNPAY từ thông tin đơn hàng.
+            Frontend gọi endpoint này để lấy URL redirect sang VNPAY Gateway.
+            </summary>
+        </member>
+        <member name="M:WarpTalk.PaymentApi.Controllers.PaymentController.VnpayReturn(Microsoft.AspNetCore.Http.IQueryCollection)">
+            <summary>
+            VNPAY Return URL — VNPAY redirect người dùng về đây sau khi thanh toán.
+            Endpoint này xác minh chữ ký và trả kết quả cho frontend.
+            </summary>
+        </member>
+        <member name="M:WarpTalk.PaymentApi.Controllers.PaymentController.VnpayIpn">
+            <summary>
+            VNPAY IPN (Instant Payment Notification) — VNPAY gọi server-to-server.
+            Dùng để cập nhật trạng thái đơn hàng trong database một cách đáng tin cậy.
+            VNPAY yêu cầu response {"RspCode":"00","Message":"Confirm Success"}.
+            </summary>
+        </member>
+        <member name="M:WarpTalk.PaymentApi.Controllers.PaymentController.GetPaymentStatus(System.String)">
+            <summary>
+            Kiểm tra trạng thái thanh toán theo OrderId.
+            Frontend có thể poll endpoint này sau khi người dùng quay về.
+            </summary>
+        </member>
+        <member name="M:WarpTalk.PaymentApi.Controllers.PaymentController.Health">
+            <summary>
+            Health check endpoint để kiểm tra API còn hoạt động.
+            </summary>
+        </member>
+    </members>
+</doc>

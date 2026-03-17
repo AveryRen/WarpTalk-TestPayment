@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\WarpTalk.PaymentApi.props" />
+</Project>
