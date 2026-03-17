@@ -1,0 +1,386 @@
+:root {
+  --bg-color: #0d0f18;
+  --panel-bg: rgba(255, 255, 255, 0.03);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-color: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.5);
+  --accent-secondary: #8b5cf6;
+  --success-color: #10b981;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add rich premium aesthetics */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Pricing Grid */
+.pricing-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.pricing-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  padding: 32px;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.pricing-card.popular {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+}
+
+.pricing-card.popular::before {
+  content: "Recommended";
+  position: absolute;
+  top: 18px;
+  right: -32px;
+  background: var(--accent-color);
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 34px;
+  transform: rotate(45deg);
+}
+
+.card-header {
+  margin-bottom: 24px;
+}
+
+.tier-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.tier-price {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.tier-price span {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: normal;
+}
+
+.tier-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  flex-grow: 1;
+}
+
+.tier-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.feature-icon {
+  color: var(--accent-color);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+  color: white;
+  box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px var(--accent-glow);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid var(--panel-border);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Checkout view */
+.checkout-view {
+  max-width: 600px;
+  margin: 0 auto;
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.checkout-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(12px);
+}
+
+.checkout-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* VNPAY Flow styles */
+.btn-vnpay {
+  background: linear-gradient(135deg, #005AAB, #ED1C24);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 90, 171, 0.4);
+}
+
+.btn-vnpay:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(237, 28, 36, 0.4);
+}
+
+.amount-display {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 16px 0;
+}
+
+.vnpay-overlay {
+  position: fixed;
+  inset: 0;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+  z-index: 1000;
+}
+
+.vnpay-modal {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  overflow: hidden;
+  color: #1e293b;
+}
+
+.vnpay-header {
+  background: #fff;
+  padding: 24px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vnpay-logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #005AAB;
+  letter-spacing: -0.5px;
+}
+
+.vnpay-logo-text span {
+  color: #ED1C24;
+}
+
+.amount-badge {
+  background: #f8fafc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.vnpay-body {
+  padding: 24px;
+}
+
+.vnpay-title {
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.vnpay-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vnpay-method-btn {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #334155;
+  font-weight: 500;
+  text-align: left;
+}
+
+.vnpay-method-btn:hover {
+  border-color: #005AAB;
+  background: #f8fafc;
+}
+
+.vnpay-cancel {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.vnpay-cancel:hover {
+  color: #64748b;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Loader */
+.loader {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  50% { top: 100%; }
+  100% { top: 0; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
